@@ -8,12 +8,11 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:5173';
 
 // Middlewares
 app.use(express.json());
 app.use(cors({
-  origin: CORS_ORIGIN,
+  origin: '*', // Permite todos os domínios
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -26,6 +25,11 @@ app.get('/status', (req, res) => {
   res.status(200).json({ status: 'online', message: 'Servidor está funcionando' });
 });
 
+// Rota raiz para facilitar testes
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'online', message: 'API do Repo Markdown Crafter está funcionando' });
+});
+
 // Tratamento de erro para rotas não encontradas
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Rota não encontrada' });
@@ -34,5 +38,5 @@ app.use('*', (req, res) => {
 // Inicializa o servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
-  console.log(`CORS habilitado para origem: ${CORS_ORIGIN}`);
+  console.log(`CORS habilitado para todas as origens`);
 }); 

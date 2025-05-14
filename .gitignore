@@ -29,3 +29,4 @@ logs
 # Arquivos temporários
 tmp/
 temp/ 
+.vercel

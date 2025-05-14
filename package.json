@@ -4,7 +4,7 @@
   "description": "Backend para o gerador de README com integração da API Gemini",
   "main": "dist/index.js",
   "engines": {
-    "node": "14.x"
+    "node": "22.x"
   },
   "scripts": {
     "build": "tsc",
